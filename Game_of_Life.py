@@ -64,6 +64,7 @@ class Game_of_Life:
 
     def manipGrid(self, mouseX, mouseY, mode):
         self.oldGrid[mouseY][mouseX] = mode
+        self.update()
         if mode == 1:
             pygame.draw.rect(self.screen, aliveColor, pygame.Rect(mouseX*10, mouseY*10, square_side, square_side))
         else:
