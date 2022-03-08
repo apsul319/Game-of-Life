@@ -66,10 +66,8 @@ class Game_of_Life:
         self.oldGrid[mouseY][mouseX] = mode
         if mode == 1:
             pygame.draw.rect(self.screen, aliveColor, pygame.Rect(mouseX*10, mouseY*10, square_side, square_side))
-            pygame.draw.rect(self.screen, deadColor, pygame.Rect(mouseX*10+1, mouseY*10+1, square_side-2, square_side-2))
         else:
             pygame.draw.rect(self.screen, deadColor, pygame.Rect(mouseX*10, mouseY*10, square_side, square_side))
-        pygame.display.update(pygame.Rect(mouseX*10, mouseY*10, square_side, square_side))
 
     def clearGrid(self):
         for col in range(len(self.oldGrid)):
@@ -99,10 +97,11 @@ class Game_of_Life:
 
             if not paused or (paused and pressed_right):
                 pressed_right = False
-                self.update()
                 self.generation()
-                pygame.display.flip()
-                clock.tick(FPS)
+                
+            self.update()
+            pygame.display.flip()
+            clock.tick(FPS)
                 
 
 if __name__ == "__main__":
